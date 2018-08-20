@@ -1,0 +1,204 @@
+﻿<%@ Master Language="C#"  AutoEventWireup="true" CodeFile="NhomToPhuocNguyen.master.cs" Inherits="NhomToPhuocNguyen" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    
+<title>Tô Phước Nguyên Fashion shop</title>
+<asp:ContentPlaceHolder id="head" runat="server">
+</asp:ContentPlaceHolder>
+
+    <meta charshet="utf-8" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+<script src="../js/jquery-1.4.1.min.js" type="text/javascript"></script>
+<script src="../js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+<script src="../js/jquery-func.js" type="text/javascript"></script>
+    
+    <style type="text/css">
+        .auto-style1 {
+            width: 39px;
+            http: //localhost:2362/js/jquery-1.4.1.min.js;
+        }
+        .auto-style2 {
+            width: 181px;
+        }
+        .side-full {
+            width: 983px;
+        }
+    </style>
+</head>
+<body>
+    
+<!-- Shell -->
+    <div class="shell">
+    <form id="form2" runat="server">
+  <!-- Header -->
+  <div id="header">
+    <h1 id="logo"><a href="#">Tô Phước Nguyên Fashion shop </a></h1>
+    <!-- Cart -->
+    <div id="cart"> <a href="NhomToPhuocNguyen_MuaHang.aspx" class="cart-link">Giỏ hàng của bạn</a>
+      <div class="cl">&nbsp;</div>
+      <span>Tổng tiền: </span>&nbsp;<asp:Label ID="LbTong" runat="server"></asp:Label>
+      </div>
+    <!-- End Cart -->
+    <!-- Navigation -->
+    <div id="navigation">
+      <ul>
+        <li class="active">
+            <asp:HyperLink ID="HyperLink1" runat="server" Text="Trang chủ" NavigateUrl="~/Trang/NhomToPhuocNguyen_TrangChu.aspx"></asp:HyperLink>
+            <asp:HyperLink ID="HyperLink6" runat="server" Text="Giới thiệu" NavigateUrl="~/Trang/NhomToPhuocNguyen_GioiThieu.aspx"></asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" Text="Mua hàng" NavigateUrl="~/Trang/NhomToPhuocNguyen_MuaHang.aspx"></asp:HyperLink>
+            <asp:HyperLink ID="HyperLink3" runat="server" Text="Đăng nhập" NavigateUrl="~/Trang/NhomToPhuocNguyen_Login/NhomToPhuocNguyen_Dangnhap.aspx"></asp:HyperLink>
+            <asp:HyperLink ID="HyperLink4" runat="server" Text="Quản trị" NavigateUrl="~/Trang/NhomToPhuocNguyen_Quantri/NhomToPhuocNguyen_Quantri.aspx"></asp:HyperLink>
+            <asp:HyperLink ID="HyperLink5" runat="server" Text="Phản hồi" NavigateUrl="~/Trang/NhomToPhuocNguyen_PhanHoi.aspx"></asp:HyperLink>
+            <asp:Label ID="Lbuser0" runat="server" style="font-weight: 700" ForeColor="#FFFFCC">Hello    </asp:Label>
+            <asp:Label ID="Lbuser" runat="server" style="font-weight: 700; color: #FF0000"></asp:Label>
+            <asp:Button ID="Button1" runat="server" Height="24px" Text="logout" OnClick="Button1_Click" />
+            </li>
+        </ul>
+     </div>
+    <!-- End Navigation -->
+  </div>
+  <!-- End Header -->
+  <!-- Main -->
+        <div id="main">
+                <div class="cl">&nbsp;</div>
+    <!-- Content -->
+    <div id="content">
+      
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server">
+        
+            <table style="width:100%;">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </div>
+        
+    <!-- End Content -->
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <!-- Search -->
+      <div class="box search">
+        <h2>Tìm Kiếm<span></span></h2>
+        <div class="box-content">
+            <label>Từ khóa<br />
+            <asp:TextBox ID="TxtTen" runat="server"></asp:TextBox>
+            </label>
+            &nbsp;
+            <label>Loại sản phẩm<br />
+            <asp:DropDownList ID="DropLSP" runat="server">
+            </asp:DropDownList>
+            </label>
+            &nbsp;
+            <div class="inline-field">
+              <label>Giá</label>
+                <asp:DropDownList ID="DropMin" runat="server" Height="23px" Width="66px" AutoPostBack="True" OnTextChanged="DropMin_TextChanged">
+                </asp:DropDownList>
+&nbsp;<label>to:</label>&nbsp;
+                <asp:DropDownList ID="DropMax" runat="server" Height="23px" Width="66px">
+                </asp:DropDownList>
+            </div>
+            <asp:Button ID="Button2" class="search-submit" runat="server" Text="Tìm kiếm" OnClick="Button2_Click" />
+            
+        </div>
+      </div>
+      <!-- End Search -->
+      <!-- Categories -->
+      <div class="box categories">
+        <h2>Danh mục sản phẩm <span></span></h2>
+        <div class="box-content">
+            
+          <ul>
+              
+              <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1">
+                  <ItemTemplate>
+                      <table style="width:100%;">
+                          <tr>
+                              <td class="auto-style1">
+                                  <asp:Image ID="Image1" runat="server" ImageUrl="~/css/images/cat.gif" />
+                              </td>
+                              <td class="auto-style2">
+                                  <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "~/Trang/NhomToPhuocNguyen_DanhMuc.aspx?Categories=" + Eval("ID").ToString() %>' Text='<%# Eval("Ten") %>'></asp:HyperLink>
+                              </td>
+                          </tr>
+                      </table>
+                  </ItemTemplate>
+              </asp:DataList>
+           
+              <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:csdlToPhuocNguyen %>" SelectCommand="SELECT * FROM [DanhMucSP]"></asp:SqlDataSource>
+           
+          </ul>
+               
+        </div>
+      </div>
+      <!-- End Categories -->
+    </div>
+      
+    <!-- End Sidebar -->
+    <div class="cl">&nbsp;</div>
+            </div>
+        </form>
+
+  <!-- End Main -->
+  <!-- Side Full -->
+  <div class="side-full">
+    <!-- More Products -->
+    <div class="more-products">
+
+    </div>
+    <!-- End More Products -->
+    <!-- Text Cols -->
+    <div class="cols">
+      <div class="cl">&nbsp;</div>
+      <div class="col">
+        <h3 class="ico ico1">Chuyển phát nhanh</h3>
+        <p>Mọi sản phẩm bạn đặt hàng đều sẽ được vận chuyển đến chỗ của bạn trong vòng 2 ngày.</p>     
+      </div>
+      <div class="col">
+        <h3 class="ico ico2">0976440694</h3>
+        <p>HÃY GỌI CHÚNG TÔI </p>
+          <p>(Từ 6h30 - 22h các ngày trong tuần)</p>      
+      </div>
+      <div class="col">
+        <h3 class="ico ico3">Quà tặng</h3>
+        <p>Với mỗi một sản phẩm mua tại shop bạn sẽ nhận được một phiếu may mắn tham dự quay số trúng thưởng, vào cuối mỗi tuần shop sẽ công bố kết quả trên trang facebook của shop.</p>     
+      </div>
+      <div class="col col-last">
+        <h3 class="ico ico4">Cách thức thanh toán</h3>
+        <p>Chúng tôi có liên kết với các ngân hàng ACB nên bạn có thể chuyển tiền qua tài khoản của chúng tôi qua số tài khoản 4214958477801883.</p>
+      </div>
+      <div class="cl">&nbsp;</div>
+    </div>
+    <!-- End Text Cols -->
+  </div>
+  <!-- End Side Full -->
+  <!-- Footer -->
+  <div id="footer">
+    <p class="left"> <a href="NhomToPhuocNguyen_TrangChu.aspx">Home</a> <span>|</span> <a href="NhomToPhuocNguyen_Phanhoi.aspx">Support</a> <span>|</span> <a href="NhomToPhuocNguyen_Taikhoankhach.aspx">My Account</a> <span>|</span> <a href="NhomToPhuocNguyen_MuaHang.aspx">The Store</a> <span>|</span> <a href="NhomToPhuocNguyen_GioiThieu.aspx">Contact</a> </p>
+    <p class="right"> &copy; 2010 Shop Around. Design by <a href="http://chocotemplates.com">Tô Phước Nguyên</a> </p>
+  </div>
+  <!-- End Footer -->
+</div>
+<!-- End Shell -->
+</body>
+</html>
